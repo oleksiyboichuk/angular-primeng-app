@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { IUser } from '../shared/models/user.model';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class AuthService {
   private baseUrl = 'http://localhost:3000';
 

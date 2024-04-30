@@ -1,16 +1,16 @@
 {
-  "users": [
-    {
-      "id": "fe21",
-      "fullName": "ffdsd",
-      "email": "Fomr@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": "8c04",
-      "fullName": "Hello World",
-      "email": "helloworld@gmail.com",
-      "password": "123123123"
-    }
-  ]
+	"users": [
+		{
+			"id": "fe21",
+			"fullName": "ffdsd",
+			"email": "Fomr@gmail.com",
+			"password": "123"
+		},
+		{
+			"id": "8c04",
+			"fullName": "Hello World",
+			"email": "helloworld@gmail.com",
+			"password": "123123123"
+		}
+	]
 }

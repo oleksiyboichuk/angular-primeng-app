@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { SetLoginService } from '../../services/set-login.service';
+import { IUser } from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +13,22 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  userData: any;
+
+  constructor(
+    private router: Router,
+    private setLoginService: SetLoginService
+  ) { }
+
+  ngOnInit(): void {
+    this.setLoginService.loginData$.subscribe(data => {
+      console.log(data);
+      if (data) this.userData = data;
+      else this.router.navigate(['login']);
+    })
+  }
 
 
   logOut() {

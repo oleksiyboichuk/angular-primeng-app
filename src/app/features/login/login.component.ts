@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
+import { SetLoginService } from '../../services/set-login.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private setLoginService: SetLoginService
   ) { }
 
   get email() { return this.loginForm.controls['email'] };
@@ -42,7 +44,10 @@ export class LoginComponent {
     this.authService.getUserByEmail(email as string).subscribe(
       response => {
         if (response.length > 0 && response[0].password === password) {
-          console.log(response[0]);
+          //set data to the stream
+          this.setLoginService.setLoginData(response[0]);
+          // console.log(response[0]);
+
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successfully!' })
           sessionStorage.setItem('email', email as string);
           this.router.navigate(['home'])
