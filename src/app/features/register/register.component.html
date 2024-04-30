@@ -1,0 +1,78 @@
+<form [formGroup]='registerForm' (ngSubmit)="submitDetails()">
+	<p-card header="Register" [style]='{width: "360px"}'>
+
+		<div class='field'>
+			<label for="fullName">Name</label>
+			<input type="text" pInputText formControlName="fullName" class='w-full' name='fullName'
+				placeholder='Type your name' />
+			@if(fullName.invalid && fullName.dirty ||
+			fullName.touched) {
+			<small class='block p-error'>
+				@if(fullName.errors?.['required']) {
+				<div>Name is required</div>
+				}
+				@if(fullName.errors?.['pattern']) {
+				<div>Enter a valid name</div>
+				}
+			</small>
+			}
+		</div>
+
+		<div class='field'>
+			<label for="email">Email</label>
+			<input type="text" pInputText formControlName="email" class='w-full' name='email' placeholder='Type your name' />
+			@if(email.invalid && email.dirty ||
+			email.touched) {
+			<small class='block p-error'>
+				@if(email.errors?.['required']) {
+				<div>Email is required</div>
+				}
+				@if(email.errors?.['email']) {
+				<div>Email should be valid</div>
+				}
+			</small>
+			}
+		</div>
+
+		<div class='field'>
+			<label for="password">Password</label>
+			<input type="password" pInputText formControlName="password" class='w-full' name='password'
+				placeholder='Type your password' />
+			@if(password.invalid && password.dirty ||
+			password.touched) {
+			<small class='block p-error'>
+				@if(password.errors?.['required']) {
+				<div>Password is required</div>
+				}
+			</small>
+			}
+		</div>
+
+		<div class='field'>
+			<label for="confirmPassword">Confirm Password</label>
+			<input type="password" pInputText formControlName="confirmPassword" class='w-full' name='confirmPassword'
+				placeholder='Confirm Password' />
+
+			@if(confirmPassword.invalid && confirmPassword.dirty ||
+			confirmPassword.touched) {
+			<small class='block p-error'>
+				@if(confirmPassword.errors?.['required']) {
+				<div>Confirm the password</div>
+				}
+			</small>
+
+			<small class='block p-error'>
+				@if(registerForm.hasError('passwordMismatch') && password.valid) {
+				<div>Password should match</div>
+				}
+			</small>
+			}
+		</div>
+
+		<p-button label="Sign Up" styleClass="w-full" [disabled]="registerForm.invalid" type="submit" />
+		<div class='mt-2'>
+			Already a member? <a routerLink='/login'>Sign In</a>
+		</div>
+
+	</p-card>
+</form>
