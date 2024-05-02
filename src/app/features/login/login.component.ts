@@ -48,7 +48,7 @@ export class LoginComponent {
           this.setLoginService.setLoginData(response[0]);
           // console.log(response[0]);
 
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successfully!' })
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: `Hello ${response[0].email}!` })
           sessionStorage.setItem('email', email as string);
           this.router.navigate(['home'])
         } else {

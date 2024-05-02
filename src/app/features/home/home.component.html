@@ -1,2 +1,7 @@
-<p>home works!</p>
-<p-button label='Sign Out' (onClick)="logOut()"></p-button>
+<p-button label='Sign Out' (onClick)="logOut()" class='sign-out'></p-button>
+
+<p-card>
+	<h1>User: <span class='user'>{{userData.fullName}}</span></h1>
+	<h2>{{userData.email}}</h2>
+	<app-home-charts />
+</p-card>
